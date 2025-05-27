@@ -1,0 +1,21 @@
+# C# / .NET / Visual Studio
+**/[Bb]in/
+**/[Oo]bj/
+**/[Dd]ebug/
+*.user
+*.suo
+.vs/
+
+# Node.js / Vite / React
+**/node_modules/
+**/dist/
+.npm/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.env.local
+.env.*.local
+
+# OS generated files
+.DS_Store
+Thumbs.db
