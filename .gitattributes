@@ -1,0 +1,17 @@
+# Configura el comportamiento predeterminado para todos los archivos de texto.
+# Esto normalizará los finales de línea a LF en el repositorio
+# y usará los finales de línea nativos del SO en el directorio de trabajo
+# (CRLF en Windows, LF en Linux/macOS).
+* text=auto
+
+# Para mayor consistencia, especialmente en archivos de código fuente,
+# puedes especificar explícitamente que se use LF.
+# Esto asegura LF tanto en el repositorio como en el directorio de trabajo (si es posible).
+*.js    text eol=lf
+*.jsx   text eol=lf
+*.ts    text eol=lf
+*.tsx   text eol=lf
+*.css   text eol=lf
+*.html  text eol=lf
+*.json  text eol=lf
+*.md    text eol=lf

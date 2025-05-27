@@ -1,33 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, useEffect } from 'react'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [greeting, setGreeting] = useState('')
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(Error);
+
+
+  useEffect(() => {
+    const fetchGreeting = async () => {
+      try {
+        const response = await fetch('http://localhost:5010/api/greeting');
+
+        if (!response.ok)
+          throw new Error('HTTP error! status: ${response.status}');
+
+        const data = await response.json();
+        console.info(data);
+        setGreeting(data.message);
+
+
+      } catch (e: unknown) {
+        console.error("Error getching greeting:", e)
+        setError(e as Error);
+      }
+      finally {
+        setLoading(false);
+      }
+    };
+
+  fetchGreeting();
+
+  }, []);
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
+      <h1>Conexión React - .NET</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+        {loading && <p> Cargandon saludo desde el backend...</p>}
+        {error.message && <p>Error al cargar el saludo: {error.message}</p>}
+        {greeting && <p> Mensaje del Backend: <strong>{greeting}</strong></p>}
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
