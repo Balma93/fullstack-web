@@ -1,0 +1,6 @@
+@DMJournal_HostAddress = http://localhost:5047
+
+GET {{DMJournal_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
